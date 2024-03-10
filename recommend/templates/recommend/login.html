@@ -1,0 +1,127 @@
+{% extends 'recommend/base.html' %}
+{% block title %}Log In{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #052642; /* Dark blue background */
+        font-family: Arial, sans-serif; /* Use a common font for better readability */
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px; /* Adjust the padding as needed */
+        box-sizing: border-box; /* Include padding and border in the total width and height */
+    }
+
+    .panel-default {
+        background-color: #072d4e; /* Darker blue panel */
+        color:  #ffffff; /* White text color */
+        border-radius: 0px; /* Rounded corners for the panel */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+        width: 800px;
+        margin: auto; /* Center the panel */
+    }
+
+    .panel-body {
+        padding: 100px; /* Add padding for spacing */
+    }
+
+    .panel-heading {
+        background-color: #0059ff; /* Blue header background */
+        padding: 20px; /* Add padding for spacing */
+        border-top-left-radius: 0px; /* Rounded corners only on the top */
+        border-top-right-radius: 0px;
+        color: #ffffff; /* White text color */
+        text-align: center; /* Center align the text */
+    }
+
+    .form-control {
+        background-color: #ffffff; /* Dark blue input background */
+        color: #000000; /* Change text color to black */
+        border-color: #0059ff; /* Blue border color */
+    }
+
+    .form-control:focus {
+        border-color: #0000ff; /* Darker blue border color on focus */
+        box-shadow: none; /* Remove the default shadow on focus */
+    }
+
+    button.btn.btn-success {
+        background-color: #0000FF; /* Blue submit button */
+        border-color: #0000FF; /* Blue button border */
+        color: #ffffff; /* White button text color */
+        font-weight: bold; /* Make the text bold */
+        transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+
+    button.btn.btn-success:hover {
+        background-color: #00008B; /* Darker blue on hover */
+        border-color: #00008B; /* Darker blue border on hover */
+    }
+
+    .panel-footer {
+        background-color: #fafeff; /* Light background for the footer */
+        padding: 25px; /* Add padding for spacing */
+        border-bottom-left-radius: 10px; /* Rounded corners only on the bottom */
+        border-bottom-right-radius: 10px;
+        color: #000000; /* Black text color */
+        text-align: center; /* Center align the text */
+    }
+
+    .panel-footer a {
+        color: #191970; /* Red link color */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .panel-footer a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="panel-heading">Log In</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="#" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_username">
+                                Username:
+                            </label>
+                            <div class="col-sm-10">
+                                <input id="id_username" maxlength="30" name="username" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id_password">
+                                Password:
+                            </label>
+                            <div class="col-sm-10">
+                                <input id="id_password" maxlength="30" name="password" type="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    Don't have an account? <a href="{% url 'signup' %}">Click here</a> to register.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

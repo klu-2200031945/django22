@@ -1,0 +1,129 @@
+{% extends 'recommend/base.html' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+<style>
+    body {
+        background-color: #052642; /* Dark blue background */
+        font-family: Arial, sans-serif; /* Use a common font for better readability */
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Adjusted container height */
+        padding: 0 20px; /* Adjust the padding as needed */
+        box-sizing: border-box; /* Include padding and border in the total width and height */
+    }
+
+    .panel-default {
+        background-color: #072d4e; /* Darker blue panel */
+        color: #ffffff; /* White text color */
+        border-radius: 10px; /* Rounded corners for the panel */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+        width: 600px; /* Increased panel width */
+        margin: auto; /* Center the panel */
+        height: 80%; /* Adjusted panel height */
+    }
+
+    .panel-body {
+        padding: 30px; /* Increased padding for spacing */
+    }
+
+    .panel-heading {
+        background-color: #0059ff; /* Blue header background */
+        padding: 20px; /* Add padding for spacing */
+        border-top-left-radius: 10px; /* Rounded corners only on the top */
+        border-top-right-radius: 10px;
+        color: #ffffff; /* White text color */
+        text-align: center; /* Center align the text */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        background-color: #ffffff; /* White input background */
+        color: #000000; /* Black text color */
+        border-color: #0059ff; /* Blue border color */
+        width: 100%; /* Make input fields fill the width of the container */
+        margin: 5px 0; /* Add margin to separate input fields */
+        padding: 10px; /* Add padding for better spacing */
+    }
+
+    .form-control:focus {
+        background-color: #001a35; /* Darker blue input background on focus */
+        border-color: #0000ff; /* Darker blue border color on focus */
+        box-shadow: none; /* Remove the default shadow on focus */
+    }
+
+    button.btn.btn-success {
+        background-color: #0000FF; /* Blue submit button */
+        border-color: #0000FF; /* Blue button border */
+        color: #ffffff; /* White button text color */
+        font-weight: bold; /* Make the text bold */
+        transition: background-color 0.3s ease; /* Smooth transition on hover */
+        width: 100%; /* Make the button fill the width of the container */
+        margin-top: 10px; /* Add some space between button and input fields */
+    }
+
+    button.btn.btn-success:hover {
+        background-color: #00008B; /* Darker blue on hover */
+        border-color: #00008B; /* Darker blue border on hover */
+    }
+
+    .panel-footer {
+        background-color: #fafeff; /* Light background for the footer */
+        padding: 25px; /* Add padding for spacing */
+        border-bottom-left-radius: 10px; /* Rounded corners only on the bottom */
+        border-bottom-right-radius: 10px;
+        color: #000000; /* Black text color */
+        text-align: center; /* Center align the text */
+    }
+
+    .panel-footer a {
+        color: #191970; /* Red link color */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .panel-footer a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+</style>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Register for an Account</h3>
+        </div>
+        <div class="panel-body">
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+            <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="id_first_name" name="first_name" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="id_last_name" name="last_name" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="id_username" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="id_email" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="id_password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            Already have an account? <a href="{% url 'login' %}">Click here</a> to log in.
+        </div>
+    </div>
+</div>
+
+{% endblock %}
